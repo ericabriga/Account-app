@@ -4,5 +4,6 @@ public interface IAccountService {
 	
 	String getAllAccounts();
 	String getAccount(Long id);
+	String createAccount(String accountJSON);
 
 }

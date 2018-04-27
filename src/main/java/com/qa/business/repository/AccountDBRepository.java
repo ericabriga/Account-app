@@ -52,4 +52,12 @@ import com.qa.util.JSONUtil;
 			}
 		}
 	
+		@Override
+		@Transactional(REQUIRED)
+		public String createAccount(String accountJSON) {
+			Account account = util.getObjectForJSON(accountJSON, Account.class);
+			manager.persist(account);
+			return "{\"message\":\"account created\"}";
+		}
+		
 }

@@ -31,4 +31,11 @@ public class AccountEndPoint {
 			return service.getAccount(id);
 		}
 		
+		@POST
+		@Path("/json")
+		@Produces({ "application/json" })
+		public String createAccounts(String jsonAccount) {
+			return service.createAccount(jsonAccount);
+		}
+		
 }
