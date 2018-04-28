@@ -75,7 +75,7 @@ import com.qa.util.JSONUtil;
 		
 		}
 		
-		/*@Override
+		@Override
 		@Transactional(REQUIRED)
 		public String deleteAccount(Long id) {
 			Account accountToDelete = findAccount(id);
@@ -86,6 +86,6 @@ import com.qa.util.JSONUtil;
 			else {
 				return "{\"message\":\"Account not found, cannot be deleted\"}";
 			}
-		}*/
+		}
 
 }
