@@ -52,4 +52,40 @@ import com.qa.util.JSONUtil;
 			}
 		}
 	
+		@Override
+		@Transactional(REQUIRED)
+		public String createAccount(String accountJSON) {
+			Account account = util.getObjectForJSON(accountJSON, Account.class);
+			manager.persist(account);
+			return "{\"message\":\"Account created\"}";
+		}
+
+		@Override
+		@Transactional(REQUIRED)
+		public String updateAccount(String accountUpdate) {
+			Account updatedAccount = util.getObjectForJSON(accountUpdate, Account.class);
+			Account originalAccount = findAccount(updatedAccount.getId());
+			if(originalAccount != null) {
+				manager.merge(updatedAccount);
+				return "{\"message\":\"Account updated\"}";
+			}
+			else {
+				return "{\"message\":\"Account not found, cannot be updated\"}";
+			}
+		
+		}
+		
+		/*@Override
+		@Transactional(REQUIRED)
+		public String deleteAccount(Long id) {
+			Account accountToDelete = findAccount(id);
+			if(accountToDelete != null) {
+				manager.remove(accountToDelete);
+				return "{\"message\":\"Account deleted\"}";
+			}
+			else {
+				return "{\"message\":\"Account not found, cannot be deleted\"}";
+			}
+		}*/
+
 }
