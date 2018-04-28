@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class Account {
 	
-	//abcss
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long id;
@@ -17,7 +17,7 @@ public class Account {
 	private String firstName;
 	@Size(min = 2, max = 100)
 	private String secondName;
-	@Size(min = 5, max = 5)
+	@Size(min = 3, max = 5)
 	private String accountNumber;
 
 	public Account() {
