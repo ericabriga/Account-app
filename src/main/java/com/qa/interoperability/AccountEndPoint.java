@@ -45,10 +45,10 @@ public class AccountEndPoint {
 			return service.updateAccount(accountUpdate);
 		}
 		
-		/*@DELETE
+		@DELETE
 		@Path("/json/{id}")
 		@Produces({ "application/json" })
 		public String deleteAccounts(@PathParam("id") Long id) {
 			return service.deleteAccount(id);
-		}*/
+		}
 }
