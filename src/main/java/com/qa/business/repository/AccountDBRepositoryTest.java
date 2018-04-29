@@ -2,14 +2,19 @@ package com.qa.business.repository;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.qa.persistence.domain.Account;
@@ -33,13 +38,22 @@ public class AccountDBRepositoryTest {
 		private JSONUtil jsonUtil;
 		
 		private static final String ACCOUNT_AS_JSON="{\"firstName\":\"Eri\",\"secondName\":\"Bri\",\"accountNumber\":123}";
-
+		private static final String ACCOUNT_AS_ARRAY = "[{\"firstName\":\"Eri\",\"secondName\":\"Bri\",\"accountNumber\":\"1234\"}]";
 		
 		@Before
 		public void initialise() {
 			jsonUtil = new JSONUtil();
 			repo.setEntityManager(manager);
 			repo.setUtil(jsonUtil);
+		}
+		
+		@Test
+		public void testGetAllAccounts() {
+			Mockito.when(manager.createQuery(Mockito.anyString())).thenReturn(query);
+			List<Account> accounts = new ArrayList<Account>();
+			accounts.add(jsonUtil.getObjectForJSON("{\"firstName\":\"Eri\",\"secondName\":\"Bri\",\"accountNumber\":\"1234\"}", Account.class));
+			Mockito.when(query.getResultList()).thenReturn(accounts);
+			Assert.assertEquals(ACCOUNT_AS_ARRAY, repo.getAllAccounts());
 		}
 		
 		@Test
