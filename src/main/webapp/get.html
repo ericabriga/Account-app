@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    var myobject;
+$(document).ready(function(){
+    $("button").click(function(){
+        $.get("http://localhost:8080/Account-app/api/account/json", function(data, status){
+            myobject = data;
+            document.getElementById("get").innerHTML = myobject[0]["secondName"];
+            
+        });
+    });
+});
+</script>
+</head>
+<body>
+
+<button>Send an HTTP GET request to a page and get the result back</button>
+<p id="get"></p>
+</body>
+</html>
